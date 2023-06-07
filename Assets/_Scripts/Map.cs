@@ -8,7 +8,7 @@ public class Map : MonoBehaviour
     [SerializeField] private Tilemap _walls;
     [SerializeField] private Tilemap _fog;
 
-    public Bounds Bounds { get;  private set; }
+    public Bounds Bounds { get; private set; } // ENCAPSULATION
 
     private Grid _grid;
 

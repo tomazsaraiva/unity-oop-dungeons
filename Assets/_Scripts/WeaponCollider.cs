@@ -11,7 +11,7 @@ namespace OOPDungeons
         public delegate void OnHitDetected(IHitable hitable);
         public OnHitDetected HitDetected;
 
-        public bool IsEnabled
+        public bool IsEnabled // ENCAPSULATION
         {
             get { return _collider.enabled; }
             set { _collider.enabled = value; }

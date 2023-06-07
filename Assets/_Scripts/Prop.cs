@@ -12,7 +12,7 @@ namespace OOPDungeons
 
         #endregion
 
-        public void Hit(float amount)
+        public void Hit(float amount) // ABSTRACTION
         {
             if (_collectible != null)
             {

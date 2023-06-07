@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OOPDungeons
 {
-    public class Blob : Enemy
+    public class Blob : Enemy // INHERITANCE
     {
         #region Variables
 

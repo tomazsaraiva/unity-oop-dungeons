@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OOPDungeons
 {
-    public class Ghost : Enemy
+    public class Ghost : Enemy  // INHERITANCE
     {
         #region Variables
 

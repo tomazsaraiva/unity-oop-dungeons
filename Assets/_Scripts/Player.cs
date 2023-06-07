@@ -25,7 +25,7 @@ namespace OOPDungeons
         [SerializeField] private InputActionReference _inputAttack;
         [SerializeField] private InputActionReference _inputAction;
 
-        public Weapon Weapon { get { return _weapon; } }
+        public Weapon Weapon { get { return _weapon; } } // ENCAPSULATION
 
         private float _currentHealth;
 

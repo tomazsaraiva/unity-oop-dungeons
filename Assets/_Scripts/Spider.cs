@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OOPDungeons
 {
-    public class Spider : Enemy
+    public class Spider : Enemy  // INHERITANCE
     {
         #region Variables
 

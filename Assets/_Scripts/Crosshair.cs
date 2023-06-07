@@ -49,7 +49,7 @@ namespace OOPDungeons
             PositionChanged?.Invoke(targetPosition);
         }
 
-        public void Interact(Player player)
+        public void Interact(Player player) // ABSTRACTION
         {
             var hit = Physics2D.Raycast(transform.position, -Vector2.up);
             if (hit.collider == null) { return; }

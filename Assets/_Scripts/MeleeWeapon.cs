@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OOPDungeons
 {
-    public class MeleeWeapon : Weapon
+    public class MeleeWeapon : Weapon  // INHERITANCE
     {
         #region Variables
 
@@ -20,14 +20,14 @@ namespace OOPDungeons
             _collider.HitDetected = WeaponCollider_HitDetected;
         }
 
-        protected override void OnAttackStarted()
+        protected override void OnAttackStarted()  // POLYMORPHISM
         {
             base.OnAttackStarted();
 
             _collider.IsEnabled = true;
         }
 
-        protected override void OnAttackEnded()
+        protected override void OnAttackEnded() // POLYMORPHISM
         {
             base.OnAttackEnded();
 
