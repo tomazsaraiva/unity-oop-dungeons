@@ -53,7 +53,7 @@ namespace OOPDungeons
         {
             var hit = Physics2D.Raycast(transform.position, -Vector2.up);
             if (hit.collider == null) { return; }
-            if (!hit.transform.TryGetComponent<IInteractable>(out IInteractable interactable)) { return; }
+            if (!hit.transform.TryGetComponent(out IInteractable interactable)) { return; }
             if (!interactable.IsInteractionEnabled()) { return; }
             interactable.Interact(player);
         }

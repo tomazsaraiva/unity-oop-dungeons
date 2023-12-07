@@ -64,7 +64,7 @@
                 {
                     "name": "",
                     "id": "4bbc1276-3a4b-4a9e-bbf9-ff5d12910830",
-                    "path": "<Mouse>/leftButton",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -74,11 +74,33 @@
                 },
                 {
                     "name": "",
+                    "id": "cc6b7db7-e9ce-47dc-a5f6-665a3724abbe",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "2c95b8f4-af6b-47fe-8782-6f39f3c3f0a5",
-                    "path": "<Keyboard>/space",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Hit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b142638e-a6a1-4452-8e66-0e7d4c0d9066",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Hit",
                     "isComposite": false,
                     "isPartOfComposite": false

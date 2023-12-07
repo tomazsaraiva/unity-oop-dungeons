@@ -28,7 +28,7 @@ namespace OOPDungeons
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.TryGetComponent<IHitable>(out IHitable hitable))
+            if (other.TryGetComponent(out IHitable hitable))
             {
                 HitDetected?.Invoke(hitable);
             }

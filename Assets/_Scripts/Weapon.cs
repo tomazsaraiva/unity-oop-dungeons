@@ -35,6 +35,7 @@ namespace OOPDungeons
         public virtual void Repair()
         {
             _currentDamage = 0;
+            _healthBar.Fill();
         }
 
         protected void Damage()
@@ -46,7 +47,7 @@ namespace OOPDungeons
 
             if (_currentDamage > _maxDamage)
             {
-                _currentDamage = _maxDamage;
+                // TODO lose weapon.
             }
         }
 
