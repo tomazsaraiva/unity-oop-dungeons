@@ -1,5 +1,9 @@
+#region Includes
+using System.Collections.Generic;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+#endregion
 
 public class Map : MonoBehaviour
 {
@@ -25,6 +29,31 @@ public class Map : MonoBehaviour
         };
 
         Bounds = bounds;
+    }
+
+    public Vector3 GetRandomTileWithinRange(Vector3 position, int range)
+    {
+        var center = Vector3Int.FloorToInt(_grid.WorldToCell(position));
+
+        var min = new Vector3Int((center - Vector3Int.right * range).x, (center - Vector3Int.up * range).y);
+        var max = new Vector3Int((center + Vector3Int.right * range).x, (center + Vector3Int.up * range).y);
+
+        var tiles = new List<Vector3Int>();
+        for (int i_x = min.x; i_x <= max.x; i_x++)
+        {
+            for (int i_y = min.y; i_y <= max.y; i_y++)
+            {
+                var tile = new Vector3Int(i_x, i_y);
+                if (!CanMoveTo(tile)) continue;
+                tiles.Add(tile);
+            }
+        }
+
+        return _grid.CellToWorld(tiles[Random.Range(0, tiles.Count)]);
+    }
+    private bool CanMoveTo(Vector3Int tile)
+    {
+        return !_walls.HasTile(tile);
     }
 
     public void Clear(Vector3 position)
