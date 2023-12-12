@@ -9,7 +9,6 @@ namespace OOPDungeons
         #region Variables
 
         [Header("References")]
-        [SerializeField] private Map _map;
         [SerializeField] private HealthBar _healthBar;
         [SerializeField] private Collectable _collectable;
 
@@ -17,8 +16,11 @@ namespace OOPDungeons
         [SerializeField] private float _hitPoints;
         [SerializeField] private float _idleRange;
 
+        private Map _map;
+
         private Vector3 _initialPosition;
         private EnemyState _currentState;
+
         private float _currentHitPoints;
 
         #endregion
@@ -27,6 +29,10 @@ namespace OOPDungeons
         {
             _initialPosition = transform.position;
             _currentHitPoints = _hitPoints;
+        }
+        protected virtual void Start()
+        {
+            _map = FindObjectOfType<Map>();
         }
 
         public void Hit(float amount)
@@ -38,7 +44,7 @@ namespace OOPDungeons
             {
                 if (_collectable != null)
                 {
-                    Instantiate(_collectable);
+                    Instantiate(_collectable, transform.position, _collectable.transform.rotation);
                 }
 
                 Destroy(gameObject);

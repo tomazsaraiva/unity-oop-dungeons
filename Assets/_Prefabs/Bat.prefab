@@ -67,5 +67,65 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1022749448, guid: 55f1629df2f960049a128b0737fda890, type: 3}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1425172793060329484, guid: 2d4be0f1616134042b6e1bd63e355274, type: 3}
+    - {fileID: 1279354700162839151, guid: 2d4be0f1616134042b6e1bd63e355274, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2d4be0f1616134042b6e1bd63e355274, type: 3}
+--- !u!114 &6993242809306291689 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5845551218577531052, guid: 2d4be0f1616134042b6e1bd63e355274, type: 3}
+  m_PrefabInstance: {fileID: 3464231922353044805}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b322281676fa007458d1d0705fbad763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6993242809413504619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5845551218454065966, guid: 2d4be0f1616134042b6e1bd63e355274, type: 3}
+  m_PrefabInstance: {fileID: 3464231922353044805}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &3203301721591726336
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993242809413504619}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &2751222002599568752
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6993242809413504619}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2496a531b4456c04e8a3e5995ca49b52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 6993242809306291689}
+  _collectable: {fileID: 0}
+  _hitPoints: 3
+  _idleRange: 0

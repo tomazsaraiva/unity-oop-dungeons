@@ -14,7 +14,7 @@ public class CollectableWeapon : Collectable
 
     public override void Interact(Player player)
     {
-        player.Equip(Instantiate(_weapon));
+        player.Equip(Instantiate(_weapon, transform.position, _weapon.transform.rotation));
 
         base.Interact(player);
     }

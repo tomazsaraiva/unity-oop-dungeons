@@ -21310,6 +21310,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2751222002599568752, guid: 5b64e51f31a187644b7e0ed56a24539f, type: 3}
+      propertyPath: _map
+      value: 
+      objectReference: {fileID: 1327032570}
     - target: {fileID: 6993242809413504619, guid: 5b64e51f31a187644b7e0ed56a24539f, type: 3}
       propertyPath: m_Name
       value: Bat
@@ -21476,6 +21480,10 @@ PrefabInstance:
       propertyPath: _map
       value: 
       objectReference: {fileID: 1327032570}
+    - target: {fileID: 117296960, guid: 0987ead8c2b49f04a891992a39c44dec, type: 3}
+      propertyPath: _collectable
+      value: 
+      objectReference: {fileID: 8360237471196903255, guid: 334a309f398110242b32bc3cdc3cdfed, type: 3}
     - target: {fileID: 1447579241850971712, guid: 0987ead8c2b49f04a891992a39c44dec, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
