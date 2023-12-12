@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace OOPDungeons
 {
-    public class Player : MonoBehaviour
+    public class Player : MonoBehaviour, IHitable
     {
         #region Variables
 
@@ -90,6 +90,15 @@ namespace OOPDungeons
             var direction = Vector2.right * Mathf.Sign(position.x - transform.position.x);
             _sprite.transform.localScale = new Vector3(direction.x, 1, 1);
             _weaponAnchor.ChangeDirection(direction);
+        }
+
+        public void Hit(float amount)
+        {
+            _currentHealth -= amount;
+            if (_currentHealth <= 0)
+            {
+                // TODO destroy player.
+            }
         }
     }
 }
