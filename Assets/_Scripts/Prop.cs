@@ -8,7 +8,7 @@ namespace OOPDungeons
     {
         #region Variables
 
-        [SerializeField] private Collectible _collectible;
+        [SerializeField] private Collectable _collectible;
 
         #endregion
 

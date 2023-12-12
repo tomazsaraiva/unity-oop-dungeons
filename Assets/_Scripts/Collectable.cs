@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OOPDungeons
 {
-    public abstract class Collectible : MonoBehaviour, IInteractable
+    public abstract class Collectable : MonoBehaviour, IInteractable
     {
         public virtual void Interact(Player player)
         {

@@ -11,7 +11,7 @@ namespace OOPDungeons
         private const string ANIMATION_TRIGGER_OPEN = "Open";
 
         [Header("References")]
-        [SerializeField] private Collectible _collectible;
+        [SerializeField] private Collectable _collectible;
 
         private Animator _animator;
         private bool _isOpened;

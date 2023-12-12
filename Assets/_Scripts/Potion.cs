@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OOPDungeons
 {
-    public class Potion : Collectible
+    public class Potion : Collectable
     {
         #region Variables
 
