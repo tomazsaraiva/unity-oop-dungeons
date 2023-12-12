@@ -11,6 +11,7 @@ namespace OOPDungeons
         [Header("References")]
         [SerializeField] private Map _map;
         [SerializeField] private HealthBar _healthBar;
+        [SerializeField] private Collectable _collectable;
 
         [Header("Configuration")]
         [SerializeField] private float _hitPoints;
@@ -35,6 +36,11 @@ namespace OOPDungeons
 
             if (_currentHitPoints == 0)
             {
+                if (_collectable != null)
+                {
+                    Instantiate(_collectable);
+                }
+
                 Destroy(gameObject);
             }
         }

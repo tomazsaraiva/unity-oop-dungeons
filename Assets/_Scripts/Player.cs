@@ -1,5 +1,4 @@
 #region Includes
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 #endregion
@@ -18,6 +17,7 @@ namespace OOPDungeons
         [SerializeField] private Crosshair _crosshair;
 
         [Header("Configuration")]
+        [SerializeField] private float _maxHealth;
         [SerializeField] private InputActionReference _inputUp;
         [SerializeField] private InputActionReference _inputDown;
         [SerializeField] private InputActionReference _inputLeft;
@@ -42,12 +42,28 @@ namespace OOPDungeons
 
             _crosshair.PositionChanged += Crosshair_PositionChanged;
 
+            _currentHealth = _maxHealth;
+
             MovePlayer(Vector2.zero);
         }
 
         public void Heal(float amount)
         {
+            _currentHealth += amount;
+            _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
 
+            // TODO update health bar
+        }
+        public void Equip(Weapon weapon)
+        {
+            _weaponAnchor.Assign(weapon.transform);
+
+            if (_weapon != null)
+            {
+                Destroy(_weapon.gameObject);
+            }
+
+            _weapon = weapon;
         }
 
         private void MovePlayer(Vector2 direction)

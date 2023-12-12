@@ -11,7 +11,7 @@ namespace OOPDungeons
         private const string ANIMATION_TRIGGER_OPEN = "Open";
 
         [Header("References")]
-        [SerializeField] private Collectable _collectible;
+        [SerializeField] private Collectable _collectable;
 
         private Animator _animator;
         private bool _isOpened;
@@ -37,9 +37,9 @@ namespace OOPDungeons
 
         private void OnAnimationEnd()
         {
-            if (_collectible == null) { return; }
+            if (_collectable == null) { return; }
 
-            Instantiate(_collectible, transform.position, _collectible.transform.rotation);
+            Instantiate(_collectable, transform.position, _collectable.transform.rotation);
         }
     }
 }
