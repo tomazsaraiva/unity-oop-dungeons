@@ -70,22 +70,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5845551218454065966, guid: 2d4be0f1616134042b6e1bd63e355274, type: 3}
   m_PrefabInstance: {fileID: 4974582556135311424}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &117296960
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1447579242408885102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0a3626108879cc4dbdb4f8861f51fb8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _map: {fileID: 0}
-  _healthBar: {fileID: 1447579242675480812}
-  _hitPoints: 3
-  _idleRange: 0
 --- !u!61 &7410009632179866622
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -112,6 +96,47 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &7677930181440826829
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447579242408885102}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 58709c34d5d4a2e42bf602c10cac911a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &117296960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447579242408885102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a3626108879cc4dbdb4f8861f51fb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _healthBar: {fileID: 1447579242675480812}
+  _collectable: {fileID: 0}
+  _hitPoints: 3
+  _stepLength: 0
+  _idleSpeed: 0
+  _idleRange: 1
+  _detectionRange: 4
+  _attackRange: 2
 --- !u!114 &1447579242675480812 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5845551218577531052, guid: 2d4be0f1616134042b6e1bd63e355274, type: 3}
