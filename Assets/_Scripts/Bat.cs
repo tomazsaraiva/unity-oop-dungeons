@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OOPDungeons
 {
-    public class Bat : Enemy  // INHERITANCE
+    public class Bat : Enemy
     {
         #region Variables
 

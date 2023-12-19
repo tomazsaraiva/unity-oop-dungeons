@@ -23,7 +23,7 @@ namespace OOPDungeons
             _animator = GetComponent<Animator>();
         }
 
-        public void Interact(Player player) // ABSTRACTION
+        public void Interact(Player player)
         {
             if (_isOpened) { return; }
             _isOpened = true;
