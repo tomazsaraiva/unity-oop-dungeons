@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OOPDungeons
 {
-    public class Prop : MonoBehaviour, IHitable
+    public class Prop : MonoBehaviour, IHitable // TODO INTERFACES
     {
         #region Variables
 
@@ -12,7 +12,7 @@ namespace OOPDungeons
 
         #endregion
 
-        public void Hit(float amount) // ABSTRACTION
+        public void Hit(float amount) // TODO POLYMORPHISM
         {
             if (_collectible != null)
             {

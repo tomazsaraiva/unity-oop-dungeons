@@ -1,4 +1,5 @@
 #region Includes
+using System;
 using UnityEngine;
 #endregion
 
@@ -14,99 +15,75 @@ namespace OOPDungeons
 
         [Header("Configuration")]
         [SerializeField] private float _hitPoints;
-        [SerializeField] private float _idleSpeed;
-        [SerializeField] private float _idleRange;
+        [SerializeField] private float _attackPower;
+        [SerializeField] protected float _idleRange;
         [SerializeField] private float _detectionRange;
         [SerializeField] private float _attackRange;
+        [SerializeField] private float _idleSpeed;
+        [SerializeField] private float _chaseSpeed;
+        [SerializeField] private float _attackSpeed;
 
-        private Map _map;
+        protected EnemyState CurrentState { get { return _currentState; } }
+        protected float CurrentSpeed { get { return GetCurrentSpeed(); } }
+        protected Collider2D Player { get { return _player; } }
 
-        private Vector3 _initialPosition;
-        private Vector3 _targetPosition;
-        private float _currentHitPoints;
-
+        protected Map _map;
         private EnemyState _currentState = EnemyState.Idle;
+
+        private float _currentHitPoints;
         private Collider2D _player;
 
         #endregion
 
         protected virtual void Awake()
         {
-            _initialPosition = transform.position;
             _currentHitPoints = _hitPoints;
         }
         protected virtual void Start()
         {
             _map = FindObjectOfType<Map>();
-            _targetPosition = transform.position;
+
+            ChangeState(EnemyState.Idle);
         }
         protected virtual void Update()
         {
-            switch (_currentState)
-            {
-                case EnemyState.Idle:
-                    IdleUpdate();
-                    break;
-                case EnemyState.Chase:
-                    ChaseUpdate();
-
-                    break;
-                case EnemyState.Attack:
-                    AttackUpdate();
-                    break;
-            }
-
             if (IsPlayerWithinAttackRange())
             {
-                _currentState = EnemyState.Attack;
+                if (_currentState != EnemyState.Attack) ChangeState(EnemyState.Attack);
             }
             else if (IsPlayerWithinDetectionRange())
             {
-                _currentState = EnemyState.Chase;
+                if (_currentState != EnemyState.Chase) ChangeState(EnemyState.Chase);
             }
             else
             {
-                _currentState = EnemyState.Idle;
+                if (_currentState != EnemyState.Idle) ChangeState(EnemyState.Idle);
             }
         }
 
-        protected virtual bool IsPlayerWithinDetectionRange()
+        protected virtual void ChangeState(EnemyState state)
+        {
+            _currentState = state;
+            Debug.Log("CHANGE STATE " + state);
+        }
+
+        private bool IsPlayerWithinDetectionRange()
         {
             _player = Physics2D.OverlapCircle(transform.position,
                                               _detectionRange,
                                               LayerMask.GetMask("Player"));
             return _player != null;
         }
-        protected virtual bool IsPlayerWithinAttackRange()
+        private bool IsPlayerWithinAttackRange()
         {
             return _player != null &&
                    Vector2.Distance(_player.transform.position, transform.position) < _attackRange;
         }
 
-        protected virtual void IdleUpdate()
-        {
-            transform.position = Vector3.MoveTowards(transform.position,
-                                                     _targetPosition,
-                                                     Time.deltaTime * _idleSpeed);
-
-            if (transform.position == _targetPosition)
-            {
-                _targetPosition = _map.GetRandomTileWithinRange(_initialPosition, (int)_idleRange);
-            }
-        }
-        protected virtual void ChaseUpdate()
-        {
-
-        }
-        protected virtual void AttackUpdate()
-        {
-
-        }
-
-        public virtual void Hit(float amount)
+        public virtual void Hit(float amount) // TODO POLYMORPHISM
         {
             _currentHitPoints--;
-            _healthBar.Decrease(1 / _hitPoints);
+            _healthBar.Decrease(amount / _hitPoints);
 
             if (_currentHitPoints == 0)
             {
@@ -116,6 +93,24 @@ namespace OOPDungeons
                 }
 
                 Destroy(gameObject);
+            }
+        }
+
+        private float GetCurrentSpeed()
+        {
+            switch (_currentState)
+            {
+                case EnemyState.Idle: return _idleSpeed;
+                case EnemyState.Chase: return _chaseSpeed;
+                case EnemyState.Attack: return _attackSpeed;
+                default: throw new NotImplementedException(_currentState + " not implemented.");
+            }
+        }
+        private void OnTriggerStay2D(Collider2D other)
+        {
+            if (other.gameObject.TryGetComponent(out Player player))
+            {
+                player.Hit(_attackPower);
             }
         }
 

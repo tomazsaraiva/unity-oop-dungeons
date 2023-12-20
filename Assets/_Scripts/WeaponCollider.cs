@@ -11,7 +11,7 @@ namespace OOPDungeons
         public delegate void OnHitDetected(IHitable hitable);
         public OnHitDetected HitDetected;
 
-        public bool IsEnabled // ENCAPSULATION
+        public bool IsEnabled // TODO ENCAPSULATION
         {
             get { return _collider.enabled; }
             set { _collider.enabled = value; }
@@ -28,6 +28,7 @@ namespace OOPDungeons
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            if (other.gameObject.CompareTag("Player")) return; // TODO change when using with enemies
             if (other.TryGetComponent(out IHitable hitable))
             {
                 HitDetected?.Invoke(hitable);

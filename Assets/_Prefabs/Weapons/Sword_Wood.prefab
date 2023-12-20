@@ -41,7 +41,7 @@ PrefabInstance:
       objectReference: {fileID: -637928720, guid: 55f1629df2f960049a128b0737fda890, type: 3}
     - target: {fileID: 6505798582826140189, guid: 8264ea8a59cd0324eb57c53b883d8c43, type: 3}
       propertyPath: m_Name
-      value: Weapon_Melee_Sword_Wood
+      value: Sword_Wood
       objectReference: {fileID: 0}
     - target: {fileID: 6505798582826140190, guid: 8264ea8a59cd0324eb57c53b883d8c43, type: 3}
       propertyPath: m_RootOrder
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 8489230728992396292}
   _attackPower: 1
-  _maxDamage: 3
+  _maxDamage: 10
   _damageIncrement: 1
   _collider: {fileID: 6810462942938288699}
 --- !u!1 &7898930612186665079 stripped

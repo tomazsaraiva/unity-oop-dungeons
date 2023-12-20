@@ -36,7 +36,7 @@ namespace OOPDungeons
 
         private void WeaponCollider_HitDetected(IHitable hitable)
         {
-            hitable.Hit(_attackPower * (0.9f * (_currentDamage / _maxDamage)));
+            hitable.Hit(_attackPower); // TODO POLYMORPHISM
 
             Damage();
         }

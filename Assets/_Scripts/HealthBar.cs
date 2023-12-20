@@ -18,6 +18,10 @@ namespace OOPDungeons
             _slider = GetComponent<Slider>();
         }
 
+        public void Increase(float amount)
+        {
+            _slider.value += amount;
+        }
         public void Decrease(float amount)
         {
             _slider.value -= amount;

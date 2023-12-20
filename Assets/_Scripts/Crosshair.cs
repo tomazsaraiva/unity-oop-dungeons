@@ -49,13 +49,15 @@ namespace OOPDungeons
             PositionChanged?.Invoke(targetPosition);
         }
 
-        public void Interact(Player player) // ABSTRACTION
+        public void Interact(Player player)
         {
             var hit = Physics2D.Raycast(transform.position, -Vector2.up);
+
             if (hit.collider == null) { return; }
             if (!hit.transform.TryGetComponent(out IInteractable interactable)) { return; }
             if (!interactable.IsInteractionEnabled()) { return; }
-            interactable.Interact(player);
+
+            interactable.Interact(player); // TODO POLYMORPHISM
         }
         public void UpdatePlayerPosition(Vector3 playerPosition)
         {

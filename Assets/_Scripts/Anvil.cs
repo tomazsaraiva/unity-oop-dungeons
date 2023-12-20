@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OOPDungeons
 {
-    public class Anvil : MonoBehaviour, IInteractable
+    public class Anvil : MonoBehaviour, IInteractable // TODO INTERFACES
     {
         public void Interact(Player player)
         {

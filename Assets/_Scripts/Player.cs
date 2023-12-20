@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 namespace OOPDungeons
 {
-    public class Player : MonoBehaviour, IHitable
+    public class Player : MonoBehaviour, IHitable // TODO INTERFACES
     {
         #region Variables
 
@@ -15,6 +15,7 @@ namespace OOPDungeons
         [SerializeField] private WeaponAnchor _weaponAnchor;
         [SerializeField] private Weapon _weapon;
         [SerializeField] private Crosshair _crosshair;
+        [SerializeField] private HealthBar _healthBar;
 
         [Header("Configuration")]
         [SerializeField] private float _maxHealth;
@@ -25,7 +26,7 @@ namespace OOPDungeons
         [SerializeField] private InputActionReference _inputAttack;
         [SerializeField] private InputActionReference _inputAction;
 
-        public Weapon Weapon { get { return _weapon; } } // ENCAPSULATION
+        public Weapon Weapon { get { return _weapon; } } // TODO ENCAPSULATION, COMPOSITION
 
         private float _currentHealth;
 
@@ -51,6 +52,7 @@ namespace OOPDungeons
         {
             _currentHealth += amount;
             _currentHealth = Mathf.Clamp(_currentHealth, 0, _maxHealth);
+            _healthBar.Increase(amount / _maxHealth);
 
             // TODO update health bar
         }
@@ -95,6 +97,8 @@ namespace OOPDungeons
         public void Hit(float amount)
         {
             _currentHealth -= amount;
+            _healthBar.Decrease(amount / _maxHealth);
+
             if (_currentHealth <= 0)
             {
                 // TODO destroy player.

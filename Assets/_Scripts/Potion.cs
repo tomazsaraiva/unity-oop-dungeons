@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace OOPDungeons
 {
-    public class Potion : Collectable
+    public class Potion : Collectable // TODO INHERITANCE
     {
         #region Variables
 

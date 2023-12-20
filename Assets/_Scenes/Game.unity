@@ -18247,6 +18247,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1327032570}
     - target: {fileID: 1491569023505907123, guid: c337eba001faade4a9da358745796645, type: 3}
+      propertyPath: _speed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1491569023505907123, guid: c337eba001faade4a9da358745796645, type: 3}
       propertyPath: _weapon
       value: 
       objectReference: {fileID: 1504207700}
@@ -18376,6 +18380,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 117296960, guid: 0987ead8c2b49f04a891992a39c44dec, type: 3}
+      propertyPath: _chaseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 117296960, guid: 0987ead8c2b49f04a891992a39c44dec, type: 3}
+      propertyPath: _attackPower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 117296960, guid: 0987ead8c2b49f04a891992a39c44dec, type: 3}
+      propertyPath: _attackSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 117296960, guid: 0987ead8c2b49f04a891992a39c44dec, type: 3}
       propertyPath: _collectable
       value: 
       objectReference: {fileID: 8360237471196903255, guid: 334a309f398110242b32bc3cdc3cdfed, type: 3}
@@ -18446,6 +18462,14 @@ PrefabInstance:
     - target: {fileID: 1447579242408885102, guid: 0987ead8c2b49f04a891992a39c44dec, type: 3}
       propertyPath: m_Name
       value: Blob
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410009632179866622, guid: 0987ead8c2b49f04a891992a39c44dec, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7410009632179866622, guid: 0987ead8c2b49f04a891992a39c44dec, type: 3}
+      propertyPath: m_UsedByEffector
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0987ead8c2b49f04a891992a39c44dec, type: 3}

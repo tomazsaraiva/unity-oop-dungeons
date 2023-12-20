@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _healthBar: {fileID: 8489230728992396292}
-  _attackPower: 1
-  _maxDamage: 3
+  _attackPower: 2
+  _maxDamage: 50
   _damageIncrement: 1
   _collider: {fileID: 6810462942938288699}
 --- !u!1 &7898930612186665079 stripped

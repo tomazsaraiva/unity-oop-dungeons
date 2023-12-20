@@ -10,6 +10,8 @@ using UnityEditor;
 
 public class Map : MonoBehaviour
 {
+    #region Variables
+
     [Header("References")]
     [SerializeField] private MapTile _mapTilePrefab;
     [SerializeField] private Transform _tilesParent;
@@ -19,11 +21,13 @@ public class Map : MonoBehaviour
     [SerializeField] private Tilemap _floor;
     [SerializeField] private Tilemap _walls;
     [SerializeField] private Tilemap _fog;
+    [SerializeField] private MapTile[,] _tiles;
 
-    public Bounds Bounds { get; private set; } // ENCAPSULATION
+    public Bounds Bounds { get; private set; } // TODO ENCAPSULATION
 
     private Grid _grid;
-    private MapTile[,] _tiles;
+
+    #endregion
 
     private void Awake()
     {
@@ -38,9 +42,11 @@ public class Map : MonoBehaviour
         };
 
         Bounds = bounds;
+
+        GenerateTiles();
     }
 
-    public Vector3 GetRandomTileWithinRange(Vector3 position, int range)
+    public MapTile GetRandomTileWithinRange(Vector3 position, int range)
     {
         var center = Vector3Int.FloorToInt(_grid.WorldToCell(position));
 
@@ -58,11 +64,58 @@ public class Map : MonoBehaviour
             }
         }
 
-        return _grid.CellToWorld(tiles[Random.Range(0, tiles.Count)]);
+        return GetMapTileByCellPosition(tiles[Random.Range(0, tiles.Count)]);
     }
-    private bool CanMoveTo(Vector3Int tile)
+    public MapTile GetMapTileByWorldPosition(Vector3 worldPosition)
     {
-        return !_walls.HasTile(tile);
+        return GetMapTileByCellPosition(_floor.WorldToCell(worldPosition));
+    }
+
+    // TODO ABSTRACTION
+    public List<MapTile> FindPath(Vector3 startPosition, Vector3 endPosition)
+    {
+        var startTile = GetMapTileByWorldPosition(startPosition);
+        var targetTile = GetMapTileByWorldPosition(endPosition);
+
+        var openSet = new List<MapTile> { startTile };
+        var closedSet = new HashSet<MapTile>();
+
+        while (openSet.Count > 0)
+        {
+            var currentTile = openSet[0];
+            for (int i = 1; i < openSet.Count; i++)
+            {
+                if (openSet[i].fCost < currentTile.fCost ||
+                    openSet[i].fCost == currentTile.fCost &&
+                    openSet[i].hCost < currentTile.hCost)
+                {
+                    currentTile = openSet[i];
+                }
+            }
+
+            openSet.Remove(currentTile);
+            closedSet.Add(currentTile);
+
+            if (currentTile == targetTile) break;
+
+            foreach (var neighbour in currentTile.neighbours)
+            {
+                var newMovementCostToNeighbour = currentTile.gCost + GetDistance(currentTile, neighbour);
+                if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour))
+                {
+                    neighbour.gCost = newMovementCostToNeighbour;
+                    neighbour.hCost = GetDistance(neighbour, targetTile);
+                    neighbour.parent = currentTile;
+
+                    if (!openSet.Contains(neighbour))
+                    {
+                        openSet.Add(neighbour);
+                    }
+                }
+            }
+        }
+
+        return RetracePath(startTile, targetTile);
     }
 
     public void Clear(Vector3 position)
@@ -86,7 +139,52 @@ public class Map : MonoBehaviour
         return !_walls.HasTile(_grid.WorldToCell(position));
     }
 
-#if UNITY_EDITOR
+    private MapTile GetMapTileByCellPosition(Vector3Int position)
+    {
+        for (int x = 0; x < _floor.size.x; x++)
+        {
+            for (int y = 0; y < _floor.size.y; y++)
+            {
+                if (_tiles[x, y] == null) continue;
+
+                var tile = _tiles[x, y];
+                if (tile.cellX == position.x && tile.cellY == position.y)
+                {
+                    return tile;
+                }
+            }
+        }
+
+        return null;
+    }
+    private int GetDistance(MapTile nodeA, MapTile nodeB)
+    {
+        int dstX = Mathf.Abs(nodeA.gridX - nodeB.gridX);
+        int dstY = Mathf.Abs(nodeA.gridY - nodeB.gridY);
+
+        if (dstX > dstY)
+            return 14 * dstY + 10 * (dstX - dstY);
+        return 14 * dstX + 10 * (dstY - dstX);
+    }
+    private List<MapTile> RetracePath(MapTile startNode, MapTile targetNode)
+    {
+        var path = new List<MapTile>();
+        var currentTile = targetNode;
+
+        while (currentTile != startNode)
+        {
+            path.Add(currentTile);
+            currentTile = currentTile.parent;
+        }
+
+        path.Reverse();
+        return path;
+    }
+
+    private bool CanMoveTo(Vector3Int tile)
+    {
+        return !_walls.HasTile(tile);
+    }
 
     private void GenerateTiles()
     {
@@ -100,17 +198,17 @@ public class Map : MonoBehaviour
             for (int i_Y = 0; i_Y < size.y; i_Y++)
             {
                 var position = new Vector3Int(_floor.origin.x + i_X, _floor.origin.y + i_Y);
-                MapTile tile = null;
-                if (_floor.HasTile(position))
-                {
-                    var cellPosition = _floor.GetCellCenterWorld(position);
+                if (!_floor.HasTile(position)) continue;
 
-                    tile = (MapTile)PrefabUtility.InstantiatePrefab(_mapTilePrefab, _tilesParent);
-                    tile.gridX = i_X;
-                    tile.gridY = i_Y;
-                    tile.transform.position = cellPosition;
-                    tile.transform.SetParent(_tilesParent);
-                }
+                var cellPosition = _floor.GetCellCenterWorld(position);
+
+                var tile = (MapTile)PrefabUtility.InstantiatePrefab(_mapTilePrefab, _tilesParent);
+                tile.gridX = i_X;
+                tile.gridY = i_Y;
+                tile.cellX = position.x;
+                tile.cellY = position.y;
+                tile.transform.position = cellPosition;
+                tile.transform.SetParent(_tilesParent);
 
                 _tiles[i_X, i_Y] = tile;
             }
@@ -133,6 +231,8 @@ public class Map : MonoBehaviour
             if (WithinBounds(_tiles, x - 1, y - 1)) tile.AddNeighbour(_tiles[x - 1, y - 1]); // BOTTOM LEFT
             if (WithinBounds(_tiles, x + 1, y - 1)) tile.AddNeighbour(_tiles[x + 1, y - 1]); // BOTTOM RIGHT
         }
+
+        EditorUtility.SetDirty(this);
     }
     private bool WithinBounds(MapTile[,] array, int x, int y)
     {
@@ -149,6 +249,8 @@ public class Map : MonoBehaviour
             DestroyImmediate(_tilesParent.GetChild(i).gameObject);
         }
     }
+
+#if UNITY_EDITOR
 
     [CustomEditor(typeof(Map))]
     public class MapEditor : Editor

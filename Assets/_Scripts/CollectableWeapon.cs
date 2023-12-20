@@ -3,7 +3,7 @@ using OOPDungeons;
 using UnityEngine;
 #endregion
 
-public class CollectableWeapon : Collectable
+public class CollectableWeapon : Collectable // TODO INHERITANCE
 {
     #region Variables
 

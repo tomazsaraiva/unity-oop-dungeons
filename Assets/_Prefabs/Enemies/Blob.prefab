@@ -132,11 +132,34 @@ MonoBehaviour:
   _healthBar: {fileID: 1447579242675480812}
   _collectable: {fileID: 0}
   _hitPoints: 3
-  _stepLength: 0
-  _idleSpeed: 0
+  _attackPower: 0
   _idleRange: 1
   _detectionRange: 4
   _attackRange: 2
+  _idleSpeed: 0
+  _chaseSpeed: 0
+  _attackSpeed: 0
+--- !u!50 &5543270322166129981
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447579242408885102}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
 --- !u!114 &1447579242675480812 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5845551218577531052, guid: 2d4be0f1616134042b6e1bd63e355274, type: 3}
